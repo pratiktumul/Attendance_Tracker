@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { SpeedTestModule } from 'ng-speed-test';
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
 
@@ -9,7 +10,9 @@ import { LoginComponent } from './login/login.component';
   declarations: [LoginComponent],
   imports: [
     CommonModule,
-    AuthRoutingModule
+    AuthRoutingModule,
+    ReactiveFormsModule,
+    SpeedTestModule,
   ]
 })
 export class AuthModule { }
