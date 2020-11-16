@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
     AuthRoutingModule,
     ReactiveFormsModule,
     SpeedTestModule,
-  ]
+  ],
+  exports: [LoginComponent]
 })
 export class AuthModule { }
