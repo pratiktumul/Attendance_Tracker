@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   }
   getSpeed() {
     this._stc.getMbps({
-      iterations: 20,
+      iterations: 9,
     }).subscribe((speed) => { console.log('Your Speed is ' + speed + ' Mbps') });
   }
   ngOnInit(): void {
