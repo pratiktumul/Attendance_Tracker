@@ -14,7 +14,6 @@ export class LoginComponent implements OnInit {
   password: string = "123";
   accessToken: string = "eyJhbGciOiJSUzI1NiIsImtpZCI6Ikx99GNL4JwGk13MlikdaMFXhcPiamhnKtfQEsoNauA";
   constructor(private _fb: FormBuilder, private _stc: SpeedTestService, private _router : Router) {
-    //this.getSpeed();
   }
   getSpeed() {
     this._stc.getMbps({
@@ -31,27 +30,12 @@ export class LoginComponent implements OnInit {
   Login() {
     const username = this.loginForm.get('UserName').value;
     const password = this.loginForm.get('UserPassword').value;
-    //console.log(this.loginForm.value);
+    
     if (username === this.userName && password === this.password) {
       localStorage.setItem('userToken', this.accessToken);
-      //console.log(localStorage.getItem('userToken'));
+      
       this._router.navigate(['/speedlocation']);
       this.loginForm.reset();
-      //this.findMe();
     }
   }
-  // findMe() {
-  //   if (navigator.geolocation) {
-  //     navigator.geolocation.getCurrentPosition((position) => {
-  //       this.showPosition(position);
-  //     });
-  //   } else {
-  //     alert("Geolocation is not supported by this browser.");
-  //   }
-  // }
-  // showPosition(position: Position) {
-  //   console.log(position.coords.latitude + " " + position.coords.longitude)
-  // }
-
-
 }

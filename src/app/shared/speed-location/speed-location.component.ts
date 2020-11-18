@@ -7,8 +7,10 @@ import { SpeedTestService } from 'ng-speed-test';
   styleUrls: ['./speed-location.component.css']
 })
 export class SpeedLocationComponent implements OnInit {
-
-  constructor(private _stc: SpeedTestService) {}
+  internetBandwith: number;
+  latitude: number;
+  longitude: number;
+  constructor(private _stc: SpeedTestService) { }
 
   ngOnInit(): void {
     this.findMe();
@@ -17,8 +19,7 @@ export class SpeedLocationComponent implements OnInit {
 
   getSpeed() {
     this._stc.getMbps({
-      iterations: 9,
-    }).subscribe((speed) => { console.log('Your Speed is ' + speed + ' Mbps') });
+    }).subscribe((speed) => { this.internetBandwith = Math.round(speed) ;  });
   }
 
   findMe() {
@@ -32,7 +33,8 @@ export class SpeedLocationComponent implements OnInit {
   }
 
   showPosition(position: Position) {
-    console.log(" This is your latitude " + position.coords.latitude + " This is your longitude " + position.coords.longitude)
+    this.latitude = position.coords.latitude;
+    this.longitude = position.coords.longitude;
   }
 
 }
