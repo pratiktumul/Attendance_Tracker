@@ -149,7 +149,7 @@ form.sign-in-form {
 .image {
     width: 90%;
     transition: transform 1.1s ease-in-out;
-    transition-delay: 0.4s;
+    transition-delay: 0.9s;
     height:40%;
     
 }
