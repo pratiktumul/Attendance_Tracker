@@ -12,8 +12,8 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   userName: string = "tumul";
   password: string = "123";
-  accessToken: string = "eyJhbGciOiJSUzI1NiIsImtpZCI6Ikx99GNL4JwGk13MlikdaMFXhcPiamhnKtfQEsoNauA";
-  constructor(private _fb: FormBuilder, private _stc: SpeedTestService, private _router : Router) {
+
+  constructor(private _fb: FormBuilder, private _stc: SpeedTestService, private _router: Router) {
   }
   getSpeed() {
     this._stc.getMbps({
@@ -30,11 +30,9 @@ export class LoginComponent implements OnInit {
   Login() {
     const username = this.loginForm.get('UserName').value;
     const password = this.loginForm.get('UserPassword').value;
-    
-    if (username === this.userName && password === this.password) {
-      localStorage.setItem('userToken', this.accessToken);
-      
-      this._router.navigate(['/speedlocation']);
+
+    if (password === this.password) {
+      this._router.navigate(['/speedlocation', btoa(JSON.stringify(username))]);
       this.loginForm.reset();
     }
   }

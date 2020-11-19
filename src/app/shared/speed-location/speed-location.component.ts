@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { SpeedTestService } from 'ng-speed-test';
 
 @Component({
@@ -8,18 +9,23 @@ import { SpeedTestService } from 'ng-speed-test';
 })
 export class SpeedLocationComponent implements OnInit {
   internetBandwith: number;
-  latitude: number;
-  longitude: number;
-  constructor(private _stc: SpeedTestService) { }
+  latitude: string;
+  longitude: string;
+  empName: string;
+  constructor(private _stc: SpeedTestService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe((params) => {
+      let empname = JSON.parse(atob(params.get('data')));
+      this.empName = empname;
+    });
     this.findMe();
     this.getSpeed();
   }
 
   getSpeed() {
     this._stc.getMbps({
-    }).subscribe((speed) => { this.internetBandwith = Math.round(speed) ;  });
+    }).subscribe((speed) => { this.internetBandwith = Math.round(speed); });
   }
 
   findMe() {
@@ -33,8 +39,8 @@ export class SpeedLocationComponent implements OnInit {
   }
 
   showPosition(position: Position) {
-    this.latitude = position.coords.latitude;
-    this.longitude = position.coords.longitude;
+    this.latitude = position.coords.latitude.toFixed(5);
+    this.longitude = position.coords.longitude.toFixed(5);
   }
 
 }
